@@ -4,9 +4,9 @@ import { navLinks } from "@/constants/navigation";
 
 const RootNavbar = () => {
   return (
-    <header className="py-5">
+    <header className="border-b py-5">
       <nav className="flex items-center justify-between gap-5">
-        <Link href={"/"} className="text-xl font-extrabold">
+        <Link href={"/"} className="text-xl font-bold">
           Price Tracker
         </Link>
         <ul className="flex items-center gap-x-5">

@@ -8,10 +8,10 @@ type WebsiteLayout = {
 
 const WebsiteLayout = ({ children }: WebsiteLayout) => {
   return (
-    <div className="mx-auto max-w-7xl px-5">
+    <main className="mx-auto max-w-7xl px-5">
       <Navbar />
       {children}
-    </div>
+    </main>
   );
 };
 

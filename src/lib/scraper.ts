@@ -3,6 +3,7 @@ import * as cheerio from "cheerio";
 
 import {
   extractCurrency,
+  extractDescription,
   extractPrice,
   extractStars,
   extractTableValues,
@@ -32,6 +33,7 @@ export async function scrapeAmzaonProduct(productUrl: string) {
     const $ = cheerio.load(response.data);
 
     const title = $(`#productTitle`).text().trim();
+    const description = extractDescription($);
     const price = extractPrice(
       $(".priceToPay span.a-price-whole"),
       $("a.size.base.a-color-price"),
@@ -77,17 +79,17 @@ export async function scrapeAmzaonProduct(productUrl: string) {
       currency: currency || "$",
       image: parsedImages,
       title,
-      price,
-      originalPrice,
+      currentPrice: Number(price) || Number(originalPrice),
+      originalPrice: Number(originalPrice) || Number(price),
       priceHistory: [],
       discountRate,
-      category: category,
       reviewsCount,
       stars,
       outOfStock,
-      lowestPrice: price,
-      highestPrice: originalPrice,
-      averagePrice: price,
+      lowestPrice: Number(price) || Number(originalPrice),
+      highestPrice: Number(originalPrice) || Number(price),
+      averagePrice: Number(price) || Number(originalPrice),
+      description,
     };
 
     console.log(data);
